@@ -139,3 +139,32 @@ if (contactForm) {
   });
 }
 
+const profileImageButton = document.querySelector('.profile-image-button');
+const imageModal = document.getElementById('imageModal');
+const imageModalClose = document.querySelector('.image-modal-close');
+const imageModalBackdrop = document.querySelector('.image-modal-backdrop');
+
+const openProfileImage = () => {
+  if (!imageModal) return;
+  imageModal.classList.add('visible');
+  imageModal.setAttribute('aria-hidden', 'false');
+  document.body.style.overflow = 'hidden';
+};
+
+const closeProfileImage = () => {
+  if (!imageModal) return;
+  imageModal.classList.remove('visible');
+  imageModal.setAttribute('aria-hidden', 'true');
+  document.body.style.overflow = '';
+};
+
+profileImageButton?.addEventListener('click', openProfileImage);
+imageModalClose?.addEventListener('click', closeProfileImage);
+imageModalBackdrop?.addEventListener('click', closeProfileImage);
+
+document.addEventListener('keydown', (event) => {
+  if (event.key === 'Escape' && imageModal?.classList.contains('visible')) {
+    closeProfileImage();
+  }
+});
+

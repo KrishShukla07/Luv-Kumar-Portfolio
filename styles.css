@@ -492,7 +492,26 @@ h1 {
   box-shadow: 0 28px 70px rgba(37, 99, 235, 0.08);
 }
 
+.profile-image-button {
+  border: none;
+  background: transparent;
+  padding: 0;
+  cursor: pointer;
+  border-radius: 16px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.profile-image-button:hover {
+  transform: translateY(-2px);
+}
+
+.profile-image-button:focus-visible {
+  outline: 3px solid rgba(96, 165, 250, 0.8);
+  outline-offset: 6px;
+}
+
 .profile-image {
+  display: block;
   width: 200px;
   height: 280px;
   border-radius: 16px;
@@ -971,6 +990,62 @@ h1 {
 
 .dark .contact-links a {
   box-shadow: 0 12px 24px rgba(59, 130, 246, 0.2);
+}
+
+.image-modal {
+  position: fixed;
+  inset: 0;
+  display: none;
+  place-items: center;
+  z-index: 100;
+}
+
+.image-modal.visible {
+  display: grid;
+}
+
+.image-modal-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(2, 6, 23, 0.8);
+  backdrop-filter: blur(4px);
+}
+
+.image-modal-content {
+  position: relative;
+  z-index: 1;
+  background: rgba(255, 255, 255, 0.98);
+  border-radius: 18px;
+  padding: 1rem;
+  box-shadow: 0 28px 90px rgba(15, 23, 42, 0.3);
+  max-width: min(80vw, 620px);
+}
+
+.image-modal-content img {
+  display: block;
+  max-width: min(72vw, 560px);
+  height: auto;
+  border-radius: 12px;
+}
+
+.image-modal-close {
+  position: absolute;
+  top: -16px;
+  right: -16px;
+  width: 42px;
+  height: 42px;
+  border: none;
+  border-radius: 50%;
+  background: #111827;
+  color: #fff;
+  font-size: 2rem;
+  line-height: 1;
+  cursor: pointer;
+  box-shadow: 0 12px 30px rgba(15, 23, 42, 0.3);
+}
+
+.dark .image-modal-content {
+  background: rgba(16, 33, 51, 0.98);
 }
 
 @media (max-width: 860px) {
