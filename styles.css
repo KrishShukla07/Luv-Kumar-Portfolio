@@ -1018,20 +1018,24 @@ h1 {
   border-radius: 18px;
   padding: 1rem;
   box-shadow: 0 28px 90px rgba(15, 23, 42, 0.3);
-  max-width: min(80vw, 620px);
+  width: min(calc(100vw - 2rem), 620px);
+  max-height: calc(100vh - 2rem);
 }
 
 .image-modal-content img {
   display: block;
-  max-width: min(72vw, 560px);
+  width: auto;
+  max-width: 100%;
+  max-height: calc(100vh - 4rem);
   height: auto;
   border-radius: 12px;
+  object-fit: contain;
 }
 
 .image-modal-close {
   position: absolute;
-  top: -16px;
-  right: -16px;
+  top: 8px;
+  right: 8px;
   width: 42px;
   height: 42px;
   border: none;
