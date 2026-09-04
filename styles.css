@@ -1018,7 +1018,8 @@ h1 {
   border-radius: 18px;
   padding: 1rem;
   box-shadow: 0 28px 90px rgba(15, 23, 42, 0.3);
-  width: min(calc(100vw - 2rem), 620px);
+  width: fit-content;
+  max-width: calc(100vw - 2rem);
   max-height: calc(100vh - 2rem);
 }
 
@@ -1026,7 +1027,7 @@ h1 {
   display: block;
   width: auto;
   max-width: 100%;
-  max-height: calc(100vh - 4rem);
+  max-height: 75vh;
   height: auto;
   border-radius: 12px;
   object-fit: contain;
