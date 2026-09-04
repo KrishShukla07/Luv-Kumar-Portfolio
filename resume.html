@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Luv Kumar - Resume</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      line-height: 1.6;
+      color: #102a43;
+      background: #f5f5f5;
+      padding: 20px;
+      margin: 0;
+    }
+    .download-btn {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      padding: 12px 24px;
+      background: #2563eb;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      z-index: 1000;
+      box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+      transition: all 0.2s ease;
+    }
+    .download-btn:hover {
+      background: #1d4ed8;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 16px rgba(37, 99, 235, 0.4);
+    }
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      background: white;
+      padding: 50px 40px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      page-break-after: avoid;
+    }
+    header {
+      text-align: center;
+      margin-bottom: 20px;
+      border-bottom: 2px solid #2563eb;
+      padding-bottom: 15px;
+    }
+    h1 {
+      font-size: 28px;
+      margin-bottom: 5px;
+    }
+    .contact-info {
+      font-size: 13px;
+      color: #627d98;
+    }
+    .contact-info span {
+      margin: 0 10px;
+    }
+    section {
+      margin-bottom: 20px;
+    }
+    h2 {
+      font-size: 16px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 12px;
+      color: #102a43;
+      border-bottom: 1px solid #e0e6ed;
+      padding-bottom: 8px;
+    }
+    .entry {
+      margin-bottom: 15px;
+    }
+    .entry-header {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 3px;
+    }
+    .entry-title {
+      font-weight: 700;
+      color: #102a43;
+    }
+    .entry-subtitle {
+      color: #2563eb;
+      font-style: italic;
+      font-size: 13px;
+    }
+    .entry-date {
+      font-size: 13px;
+      color: #627d98;
+    }
+    .entry-description {
+      color: #627d98;
+      font-size: 13px;
+      margin-top: 5px;
+    }
+    ul {
+      margin-left: 20px;
+      font-size: 13px;
+      color: #627d98;
+    }
+    li {
+      margin-bottom: 3px;
+    }
+    .skills-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      font-size: 13px;
+    }
+    .skill-badge {
+      background: #f0f6ff;
+      color: #2563eb;
+      padding: 4px 10px;
+      border-radius: 4px;
+      font-weight: 500;
+    }
+    @media print {
+      body {
+        padding: 0;
+        background: white;
+        margin: 0;
+      }
+      .download-btn {
+        display: none !important;
+      }
+      .container {
+        max-width: 100%;
+        box-shadow: none;
+        padding: 0;
+        margin: 0;
+        background: white;
+      }
+    }
+  </style>
+</head>
+<body>
+  <button class="download-btn" onclick="downloadPDF()">⬇ Download PDF</button>
+  
+  <div class="container" id="resumeContent">
+    <header>
+      <h1>Luv Kumar</h1>
+      <div class="contact-info">
+        <span>Jaipur, Rajasthan 844121</span>
+        <span>•</span>
+        <span>9122886287</span>
+        <span>•</span>
+        <span>krishshukla10000@gmail.com</span>
+        <br/>
+        <span>GitHub: github.com/KrishShukla07</span>
+        <span>•</span>
+        <span>LinkedIn: linkedin.com/in/luv-kumar-109767224</span>
+      </div>
+    </header>
+
+    <section>
+      <h2>Objective</h2>
+      <p>Dedicated Computer Science student building a strong foundation in full-stack tools, web technologies, and cybersecurity. Eager to leverage academic coursework, practical personal development projects, and structured training from Cisco to grow within a collaborative technical environment.</p>
+    </section>
+
+    <section>
+      <h2>Education</h2>
+      <div class="entry">
+        <div class="entry-header">
+          <span class="entry-title">Jagannath University</span>
+          <span class="entry-date">Expected Graduation: 2027</span>
+        </div>
+        <div class="entry-subtitle">Bachelor of Technology in Computer Science</div>
+        <div class="entry-description">
+          <strong>Relevant Coursework:</strong> Introduction to Programming (C, Python), Data Structures & Algorithms, Database Management Systems (DBMS), Computer Networks, and Operating Systems.
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Technical Skills</h2>
+      <div class="skills-list">
+        <span class="skill-badge">HTML</span>
+        <span class="skill-badge">CSS</span>
+        <span class="skill-badge">JavaScript</span>
+        <span class="skill-badge">TypeScript</span>
+        <span class="skill-badge">C</span>
+        <span class="skill-badge">Python</span>
+        <span class="skill-badge">Git & GitHub</span>
+        <span class="skill-badge">Responsive Design</span>
+        <span class="skill-badge">DBMS</span>
+        <span class="skill-badge">Data Structures</span>
+        <span class="skill-badge">Cybersecurity Fundamentals</span>
+        <span class="skill-badge">VS Code</span>
+      </div>
+    </section>
+
+    <section>
+      <h2>Projects</h2>
+      <div class="entry">
+        <div class="entry-header">
+          <span class="entry-title">C Programming Practice</span>
+        </div>
+        <div class="entry-subtitle">github.com/KrishShukla07/C-Programming-Practice</div>
+        <ul>
+          <li>Comprehensive collection of C programming examples and exercises demonstrating fundamental programming concepts</li>
+          <li>Covers arithmetic operations, control structures, mathematical functions, and algorithm implementations</li>
+        </ul>
+      </div>
+      <div class="entry">
+        <div class="entry-header">
+          <span class="entry-title">Schedule-Master</span>
+        </div>
+        <div class="entry-subtitle">Web Application | TypeScript, Web Technologies</div>
+        <ul>
+          <li>Interactive web application designed as a personal scheduling assistant</li>
+          <li>Implemented scheduling structures using TypeScript for robust application state management</li>
+        </ul>
+      </div>
+      <div class="entry">
+        <div class="entry-header">
+          <span class="entry-title">Luv-Kumar-Portfolio</span>
+        </div>
+        <div class="entry-subtitle">Portfolio Website | HTML, CSS, JavaScript</div>
+        <ul>
+          <li>Fully responsive personal portfolio website showcasing technical skills and projects</li>
+          <li>Designed with focus on clean web layout design and navigation principles</li>
+        </ul>
+      </div>
+      <div class="entry">
+        <div class="entry-header">
+          <span class="entry-title">Snake Game</span>
+        </div>
+        <div class="entry-subtitle">Game | HTML5, JavaScript, CSS</div>
+        <ul>
+          <li>Interactive browser-based 2D Snake game with HTML5 and JavaScript logic</li>
+          <li>Features event listeners for player input and structured collision detection algorithms</li>
+        </ul>
+      </div>
+    </section>
+
+    <section>
+      <h2>Training & Internships</h2>
+      <div class="entry">
+        <div class="entry-header">
+          <span class="entry-title">Cybersecurity Trainee</span>
+          <span class="entry-date">2024 – 2025</span>
+        </div>
+        <div class="entry-subtitle">Cisco Networking Academy</div>
+        <ul>
+          <li>Completed two structured introductory training programs focused on core cybersecurity principles</li>
+          <li>Studied foundational concepts in network defense, threat awareness, and secure system operations</li>
+        </ul>
+      </div>
+    </section>
+
+    <section>
+      <h2>Certifications</h2>
+      <ul>
+        <li><strong>Introduction to Cybersecurity</strong> – Cisco Networking Academy (7 Aug 2025)</li>
+        <li><strong>Introduction to Cybersecurity</strong> – Cisco Networking Academy (8 Jul 2024)</li>
+        <li><strong>Build AI Apps with Python</strong> – Learn and Build, Jagannath University (4 May 2024)</li>
+      </ul>
+    </section>
+  </div>
+
+  <script>
+    function downloadPDF() {
+      const element = document.getElementById('resumeContent');
+      const opt = {
+        margin: [10, 10, 10, 10],
+        filename: 'Luv_Kumar_Resume.pdf',
+        image: { type: 'jpeg', quality: 0.98 },
+        html2canvas: { scale: 2, useCORS: true },
+        jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+      };
+      html2pdf().set(opt).from(element).save();
+    }
+  </script>
+</body>
+</html>

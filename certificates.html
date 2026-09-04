@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Luv Kumar - Certifications</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      min-height: 100vh;
+      padding: 40px 20px;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    header {
+      text-align: center;
+      color: white;
+      margin-bottom: 50px;
+    }
+
+    header h1 {
+      font-size: 36px;
+      margin-bottom: 10px;
+    }
+
+    header p {
+      font-size: 18px;
+      opacity: 0.9;
+    }
+
+    .back-link {
+      display: inline-block;
+      margin-bottom: 30px;
+      padding: 10px 20px;
+      background: rgba(255, 255, 255, 0.2);
+      color: white;
+      text-decoration: none;
+      border-radius: 6px;
+      transition: all 0.2s ease;
+    }
+
+    .back-link:hover {
+      background: rgba(255, 255, 255, 0.3);
+    }
+
+    .certificates-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+      margin-bottom: 50px;
+    }
+
+    .cert-card {
+      background: white;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .cert-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+    }
+
+    .cert-header {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      padding: 30px 20px;
+      text-align: center;
+    }
+
+    .cert-icon {
+      font-size: 48px;
+      margin-bottom: 15px;
+    }
+
+    .cert-header h2 {
+      font-size: 20px;
+      margin-bottom: 10px;
+    }
+
+    .cert-issuer {
+      font-size: 14px;
+      opacity: 0.9;
+    }
+
+    .cert-body {
+      padding: 25px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .cert-details {
+      margin-bottom: 20px;
+      flex: 1;
+    }
+
+    .cert-detail-item {
+      margin-bottom: 15px;
+    }
+
+    .cert-detail-label {
+      font-weight: 600;
+      color: #333;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .cert-detail-value {
+      color: #666;
+      font-size: 14px;
+      margin-top: 5px;
+    }
+
+    .cert-date {
+      display: inline-block;
+      background: #f0f0f0;
+      color: #667eea;
+      padding: 8px 16px;
+      border-radius: 20px;
+      font-size: 13px;
+      font-weight: 600;
+      margin-bottom: 20px;
+    }
+
+    .cert-actions {
+      display: flex;
+      gap: 10px;
+    }
+
+    .cert-btn {
+      flex: 1;
+      padding: 12px 16px;
+      border: none;
+      border-radius: 6px;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      text-decoration: none;
+      text-align: center;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .cert-btn-view {
+      background: #667eea;
+      color: white;
+    }
+
+    .cert-btn-view:hover {
+      background: #5568d3;
+    }
+
+    .cert-btn-download {
+      background: #f0f0f0;
+      color: #333;
+    }
+
+    .cert-btn-download:hover {
+      background: #e0e0e0;
+    }
+
+    .modal {
+      display: none !important;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.8) !important;
+      z-index: 9999 !important;
+      padding: 20px;
+      overflow: auto;
+    }
+
+    .modal.active {
+      display: flex !important;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .modal-content {
+      background: white;
+      border-radius: 12px;
+      max-width: 700px;
+      width: 100%;
+      position: relative;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    }
+
+    .modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 25px;
+      border-bottom: 2px solid #f0f0f0;
+      background: #f9f9f9;
+    }
+
+    .modal-header h2 {
+      font-size: 22px;
+      color: #333;
+      margin: 0;
+    }
+
+    .modal-close {
+      background: none;
+      border: none;
+      font-size: 32px;
+      color: #999;
+      cursor: pointer;
+      transition: color 0.2s ease;
+      padding: 0;
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .modal-close:hover {
+      color: #667eea;
+    }
+
+    .modal-body {
+      padding: 40px 30px;
+      text-align: center;
+      background: white;
+    }
+
+
+    .modal-body img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 6px;
+    }
+
+    .cert-download-btn {
+      display: inline-block;
+      margin-top: 20px;
+      padding: 12px 30px;
+      background: var(--primary);
+      color: white;
+      text-decoration: none;
+      border-radius: 6px;
+      font-weight: 600;
+      transition: background 0.2s ease;
+    }
+
+    .cert-download-btn:hover {
+      background: #1e40af;
+    }
+
+    .certificate-preview {
+      background: #f5f5f5;
+      padding: 40px;
+      border-radius: 6px;
+      margin-bottom: 20px;
+      text-align: center;
+      color: #999;
+    }
+
+    @media (max-width: 768px) {
+      header h1 {
+        font-size: 28px;
+      }
+
+      .certificates-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .modal-body {
+        padding: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <a href="index.html" class="back-link">← Back to Portfolio</a>
+
+    <header>
+      <h1>🏆 My Certifications</h1>
+      <p>Professional certifications and achievements</p>
+    </header>
+
+    <div class="certificates-grid">
+      <!-- Certificate 1 -->
+      <div class="cert-card">
+        <div class="cert-header">
+          <div class="cert-icon">🔐</div>
+          <h2>Introduction to Cybersecurity</h2>
+          <div class="cert-issuer">Cisco Networking Academy</div>
+        </div>
+        <div class="cert-body">
+          <span class="cert-date">7 Aug 2025</span>
+          <div class="cert-details">
+            <div class="cert-detail-item">
+              <div class="cert-detail-label">Course</div>
+              <div class="cert-detail-value">Introduction to Cybersecurity</div>
+            </div>
+            <div class="cert-detail-item">
+              <div class="cert-detail-label">Institution</div>
+              <div class="cert-detail-value">Cisco Networking Academy</div>
+            </div>
+            <div class="cert-detail-item">
+              <div class="cert-detail-label">Skills Demonstrated</div>
+              <div class="cert-detail-value">Cyber threats, network security, threat detection, defense strategies</div>
+            </div>
+          </div>
+          <div class="cert-actions">
+            <button class="cert-btn cert-btn-view" onclick="openModal('cert1')">View Certificate</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Certificate 2 -->
+      <div class="cert-card">
+        <div class="cert-header">
+          <div class="cert-icon">🔐</div>
+          <h2>Introduction to Cybersecurity</h2>
+          <div class="cert-issuer">Cisco Networking Academy</div>
+        </div>
+        <div class="cert-body">
+          <span class="cert-date">8 Jul 2024</span>
+          <div class="cert-details">
+            <div class="cert-detail-item">
+              <div class="cert-detail-label">Course</div>
+              <div class="cert-detail-value">Introduction to Cybersecurity</div>
+            </div>
+            <div class="cert-detail-item">
+              <div class="cert-detail-label">Institution</div>
+              <div class="cert-detail-value">Cisco Networking Academy</div>
+            </div>
+            <div class="cert-detail-item">
+              <div class="cert-detail-label">Skills Demonstrated</div>
+              <div class="cert-detail-value">Cyber threats, network security, threat detection, defense strategies</div>
+            </div>
+          </div>
+          <div class="cert-actions">
+            <button class="cert-btn cert-btn-view" onclick="openModal('cert2')">View Certificate</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Certificate 3 -->
+      <div class="cert-card">
+        <div class="cert-header">
+          <div class="cert-icon">🐍</div>
+          <h2>Build AI Apps with Python</h2>
+          <div class="cert-issuer">Learn and Build</div>
+        </div>
+        <div class="cert-body">
+          <span class="cert-date">4 May 2024</span>
+          <div class="cert-details">
+            <div class="cert-detail-item">
+              <div class="cert-detail-label">Workshop</div>
+              <div class="cert-detail-value">Build AI Apps with Python</div>
+            </div>
+            <div class="cert-detail-item">
+              <div class="cert-detail-label">Institution</div>
+              <div class="cert-detail-value">Learn and Build (Jagannath University, Chakshu Campus)</div>
+            </div>
+            <div class="cert-detail-item">
+              <div class="cert-detail-label">Skills Demonstrated</div>
+              <div class="cert-detail-value">Python programming, AI application development</div>
+            </div>
+          </div>
+          <div class="cert-actions">
+            <button class="cert-btn cert-btn-view" onclick="openModal('cert3')">View Certificate</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="cert1Modal" class="modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2>Introduction to Cybersecurity (Aug 2025)</h2>
+        <button class="modal-close" onclick="closeModal('cert1')">×</button>
+      </div>
+      <div class="modal-body">
+        <div class="certificate-preview">📄 Certificate PDF File</div>
+        <p style="color: #666; margin-bottom: 10px;"><strong>Issued by:</strong> Cisco Networking Academy</p>
+        <p style="color: #666; margin-bottom: 20px;"><strong>Completion Date:</strong> 7 August 2025</p>
+        <a href="Introduction_to_Cybersecurity_certificate_krishshukla10000-gmail-com.pdf" download class="cert-download-btn">⬇ Download Certificate</a>
+      </div>
+    </div>
+  </div>
+
+  <div id="cert2Modal" class="modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2>Introduction to Cybersecurity (Jul 2024)</h2>
+        <button class="modal-close" onclick="closeModal('cert2')">×</button>
+      </div>
+      <div class="modal-body">
+        <div class="certificate-preview">📄 Certificate PDF File</div>
+        <p style="color: #666; margin-bottom: 10px;"><strong>Issued by:</strong> Cisco Networking Academy</p>
+        <p style="color: #666; margin-bottom: 20px;"><strong>Completion Date:</strong> 8 July 2024</p>
+        <a href="LuvKumar-JNUJ_July24_CYB_-certificate.pdf" download class="cert-download-btn">⬇ Download Certificate</a>
+      </div>
+    </div>
+  </div>
+
+  <div id="cert3Modal" class="modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2>Build AI Apps with Python</h2>
+        <button class="modal-close" onclick="closeModal('cert3')">×</button>
+      </div>
+      <div class="modal-body">
+        <div class="certificate-preview">📄 Certificate PDF File</div>
+        <p style="color: #666; margin-bottom: 10px;"><strong>Issued by:</strong> Learn and Build (Jagannath University)</p>
+        <p style="color: #666; margin-bottom: 20px;"><strong>Completion Date:</strong> 4 May 2024</p>
+        <a href="luv-kumar-certificate.pdf" download class="cert-download-btn">⬇ Download Certificate</a>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function openModal(certId) {
+      const modal = document.getElementById(certId + 'Modal');
+      if (modal) {
+        modal.classList.add('active');
+      }
+    }
+
+    function closeModal(certId) {
+      const modal = document.getElementById(certId + 'Modal');
+      if (modal) {
+        modal.classList.remove('active');
+      }
+    }
+
+    // Close modal when clicking the close button
+    document.querySelectorAll('.modal-close').forEach(btn => {
+      btn.addEventListener('click', function(e) {
+        e.stopPropagation();
+        this.closest('.modal').classList.remove('active');
+      });
+    });
+
+    // Close modal when clicking outside
+    document.querySelectorAll('.modal').forEach(modal => {
+      modal.addEventListener('click', function(e) {
+        if (e.target === this) {
+          this.classList.remove('active');
+        }
+      });
+    });
+
+    // Close on Escape key
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') {
+        document.querySelectorAll('.modal.active').forEach(modal => {
+          modal.classList.remove('active');
+        });
+      }
+    });
+  </script>
+</body>
+</html>
