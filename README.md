@@ -149,16 +149,16 @@ on:
     branches: ["main"]
 ```
 
-### Expected live URL
-
-```text
-https://<your-username>.github.io/<your-repository-name>/
-```
-
-Example:
+### Live URL
 
 ```text
 https://krishshukla07.github.io/Luv-Kumar-Portfolio/
+```
+
+GitHub repository:
+
+```text
+https://github.com/KrishShukla07/Luv-Kumar-Portfolio
 ```
 
 ## Customization Guide
