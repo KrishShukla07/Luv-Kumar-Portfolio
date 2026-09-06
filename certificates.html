@@ -98,6 +98,13 @@
       opacity: 0.9;
     }
 
+    .cert-cohort {
+      font-size: 12px;
+      opacity: 0.75;
+      font-style: italic;
+      margin-top: 4px;
+    }
+
     .cert-body {
       padding: 25px;
       flex: 1;
@@ -257,7 +264,7 @@
       display: inline-block;
       margin-top: 20px;
       padding: 12px 30px;
-      background: var(--primary);
+      background: #2563eb;
       color: white;
       text-decoration: none;
       border-radius: 6px;
@@ -309,6 +316,7 @@
           <div class="cert-icon">🔐</div>
           <h2>Introduction to Cybersecurity</h2>
           <div class="cert-issuer">Cisco Networking Academy</div>
+          <div class="cert-cohort">v2 — Advanced Cohort</div>
         </div>
         <div class="cert-body">
           <span class="cert-date">7 Aug 2025</span>
@@ -338,6 +346,7 @@
           <div class="cert-icon">🔐</div>
           <h2>Introduction to Cybersecurity</h2>
           <div class="cert-issuer">Cisco Networking Academy</div>
+          <div class="cert-cohort">v1 — Foundation Cohort</div>
         </div>
         <div class="cert-body">
           <span class="cert-date">8 Jul 2024</span>
@@ -442,6 +451,9 @@
       const modal = document.getElementById(certId + 'Modal');
       if (modal) {
         modal.classList.add('active');
+        // Move focus into the modal for accessibility
+        const firstFocusable = modal.querySelector('button, a, [tabindex]');
+        if (firstFocusable) firstFocusable.focus();
       }
     }
 
@@ -449,6 +461,9 @@
       const modal = document.getElementById(certId + 'Modal');
       if (modal) {
         modal.classList.remove('active');
+        // Return focus to the button that opened this modal
+        const trigger = document.querySelector(`[onclick="openModal('${certId}')"]`);
+        if (trigger) trigger.focus();
       }
     }
 
@@ -475,6 +490,34 @@
         document.querySelectorAll('.modal.active').forEach(modal => {
           modal.classList.remove('active');
         });
+      }
+    });
+
+    // Focus trap: keep Tab/Shift+Tab within the open modal
+    document.addEventListener('keydown', function(e) {
+      if (e.key !== 'Tab') return;
+      const activeModal = document.querySelector('.modal.active');
+      if (!activeModal) return;
+
+      const focusable = Array.from(
+        activeModal.querySelectorAll('button, a[href], input, textarea, select, [tabindex]:not([tabindex="-1"])')
+      ).filter(el => !el.disabled && el.offsetParent !== null);
+
+      if (focusable.length === 0) return;
+
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+
+      if (e.shiftKey) {
+        if (document.activeElement === first) {
+          e.preventDefault();
+          last.focus();
+        }
+      } else {
+        if (document.activeElement === last) {
+          e.preventDefault();
+          first.focus();
+        }
       }
     });
   </script>

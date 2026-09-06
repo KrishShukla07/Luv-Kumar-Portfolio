@@ -94,6 +94,13 @@ navToggle?.addEventListener('click', () => {
   siteNav?.classList.toggle('open');
 });
 
+// Close mobile nav when any nav link is clicked
+siteNav?.querySelectorAll('a').forEach(link => {
+  link.addEventListener('click', () => {
+    siteNav.classList.remove('open');
+  });
+});
+
 const preferredTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
 const savedTheme = localStorage.getItem('portfolio-theme');
 const theme = savedTheme || preferredTheme;
@@ -121,21 +128,36 @@ terminalForm?.addEventListener('submit', (event) => {
 
 // Contact form handler
 const contactForm = document.querySelector('#contactForm');
+const contactSubmitBtn = contactForm?.querySelector('button[type="submit"]');
+
 if (contactForm) {
   contactForm.addEventListener('submit', (e) => {
     e.preventDefault();
-    
+
     const formData = new FormData(contactForm);
     const name = formData.get('name');
     const email = formData.get('email');
     const subject = formData.get('subject');
     const message = formData.get('message');
-    
+
     const mailtoLink = `mailto:krishshukla10000@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\n${message}`)}`;
-    
+
+    // Show feedback before redirecting
+    if (contactSubmitBtn) {
+      contactSubmitBtn.textContent = 'Opening email client…';
+      contactSubmitBtn.disabled = true;
+    }
+
     window.location.href = mailtoLink;
-    contactForm.reset();
-    alert('Opening your email client to send the message...');
+
+    // Reset after a short delay to allow the mailto to trigger
+    setTimeout(() => {
+      contactForm.reset();
+      if (contactSubmitBtn) {
+        contactSubmitBtn.textContent = 'Send Message';
+        contactSubmitBtn.disabled = false;
+      }
+    }, 1500);
   });
 }
 

@@ -515,7 +515,8 @@ h1 {
   width: 200px;
   height: 280px;
   border-radius: 16px;
-  background: url('profile-professional.jpeg') center / cover no-repeat;
+  object-fit: cover;
+  object-position: center 18%;
   box-shadow: 0 10px 40px rgba(37, 99, 235, 0.25);
   border: 3px solid var(--primary);
 }
@@ -1058,7 +1059,7 @@ h1 {
 @media (max-width: 860px) {
   .hero-content,
   .about-grid,
-  .contact-card {
+  .contact-container {
     grid-template-columns: 1fr;
   }
 
@@ -1106,8 +1107,21 @@ h1 {
   }
 
   .project-card,
-  .about-card,
-  .contact-card {
+  .about-card {
     padding: 1.5rem;
   }
+}
+
+/* Certifications CTA button row */
+.certs-cta {
+  text-align: center;
+  margin-top: 2rem;
+}
+
+/* Differentiator label for duplicate cert cards */
+.cert-meta-tag {
+  color: var(--muted);
+  font-size: 0.82rem;
+  font-style: italic;
+  margin: 0.15rem 0 0.25rem;
 }
